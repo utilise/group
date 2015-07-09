@@ -1,0 +1,23 @@
+{
+  "name": "group",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul test ./node_modules/mocha/bin/_mocha --report html -- -R spec",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && rm -rf ./coverage"
+  },
+  "author": "Pedram Emrouznejad (https://github.com/pemrouz)",
+  "license": "pemrouz.mit-license.org",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "client": "git+https://github.com/utilise/client.git",
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "mocha-lcov-reporter": "0.0.2",
+    "to": "git+https://github.com/utilise/to.git"
+  },
+  "dependencies": {
+    "owner": "git+https://github.com/utilise/owner.git"
+  }
+}
