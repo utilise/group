@@ -17,9 +17,13 @@ describe('group', function() {
     /* istanbul ignore next */
     if (!owner.console) return
     var realLog = owner.console.log
+      , realCollapsed = owner.console.groupCollapsed
+      , realEnd = owner.console.groupEnd
       , realConsole = owner.console
       , result = []
 
+    owner.console.groupCollapsed = null
+    owner.console.groupEnd = null
     owner.console.log = function(){ 
       result = result.concat(to.arr(arguments))
       realLog.apply && realLog.apply(realConsole, arguments) 
@@ -41,13 +45,17 @@ describe('group', function() {
     , '*****' 
     ])
 
-    owner.console = realConsole
+    owner.console.log = realLog
+    owner.console.groupCollapsed = realCollapsed
+    owner.console.groupEnd = realEnd
   })
 
   it('should prefix function with group message (enabled)', function() {
     /* istanbul ignore next */
     if (!owner.console) return
     var realLog = owner.console.log
+      , realCollapsed = owner.console.groupCollapsed
+      , realEnd = owner.console.groupEnd
       , realConsole = owner.console
       , result = []
       , start = []
@@ -68,6 +76,7 @@ describe('group', function() {
       realLog.apply && realLog.apply(realConsole, arguments) 
     } 
 
+
     group('foo', function(){
       ;[1,2,3].map(function(){ console.log('bar') })
     })
@@ -80,7 +89,9 @@ describe('group', function() {
     ])
     expect(end).to.eql(['foo'])
   
-    owner.console = realConsole
+    owner.console.log = realLog
+    owner.console.groupCollapsed = realCollapsed
+    owner.console.groupEnd = realEnd
   })
 
 })
