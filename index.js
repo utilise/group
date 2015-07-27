@@ -1,5 +1,5 @@
-var client = require('client')
-  , owner = require('owner')
+var client = require('utilise.client')
+  , owner = require('utilise.owner')
 
 module.exports = function group(prefix, fn){
   if (!owner.console) return fn()
