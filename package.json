@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "utilise.client": "*",
-    "utilise.owner": "*"
+    "utilise.owner": "*",
+    "utilise.noop": "*"
   }
 }
