@@ -9,7 +9,7 @@ describe('group', function() {
   it('should do nothing if no console', function() {
     var realConsole = owner.console
     delete owner.console
-    expect(group('foo', function(){ realConsole.log('bar') })).to.be.not.ok
+    expect(group('foo', function(){ return 'baz' })).to.be.eql('baz')
     owner.console = realConsole
   })
 
@@ -29,9 +29,10 @@ describe('group', function() {
       realLog.apply && realLog.apply(realConsole, arguments) 
     } 
 
-    group('foo', function(){
+    expect(group('foo', function(){
       ;[1,2,3].map(function(){ console.log('bar') })
-    })
+      return 'foo'
+    })).to.eql('foo')
 
     expect(result).to.eql([ 
       '*****'
@@ -77,9 +78,10 @@ describe('group', function() {
     } 
 
 
-    group('foo', function(){
+    expect(group('foo', function(){
       ;[1,2,3].map(function(){ console.log('bar') })
-    })
+      return 'foo'
+    })).to.eql('foo')
 
     expect(start).to.eql(['foo'])
     expect(result).to.eql([ 
